@@ -1,0 +1,11 @@
+[Unit]
+Description=My service gives Kazan weather on startup in journalctl logs
+After=network.target
+#Documentation="/usr/bin/curl wttr.in:help"
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/curl wttr.in/Kazan?format=4
+
+[Install]
+WantedBy=multi-user.target
