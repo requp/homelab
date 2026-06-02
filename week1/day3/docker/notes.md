@@ -11,9 +11,9 @@
 `docker pull <image-name>:<image-tag>`
 
 ### Build an image from Dockerfile
--f /path/to/Dockerfile if it is not in the current dir\n
-"." specify the context where the Dockerfile will be searching for files (to copy in the image for example)\n
-So in this case it will be the current dir\n 
+-f /path/to/Dockerfile if it is not in the current dir\
+"." specify the context where the Dockerfile will be searching for files (to copy in the image for example)\
+So in this case it will be the current dir\ 
 `docker build -t <image-name>:<image-tag> .`
 
 ### Dockerfile intructions
