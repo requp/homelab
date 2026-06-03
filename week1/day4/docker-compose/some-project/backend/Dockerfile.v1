@@ -1,0 +1,13 @@
+FROM python:3.13-slim
+
+WORKDIR /proj
+
+COPY pyproject.toml .
+RUN <<EOT
+python3.13 -m venv .venv 
+.venv/bin/pip install -e .
+EOT
+COPY src/ src/
+COPY .env .
+
+ENTRYPOINT ["sh", "-c", ". .venv/bin/activate && cd src && ./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"]

@@ -1,0 +1,55 @@
+services:
+  backend:
+    image: some-backend:v2
+    pull_policy: never
+    container_name: some-backend
+    env_file:
+      - backend/.env
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: runner
+    networks:
+      - backend-lan
+      - shared-lan
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+
+  frontend: 
+    image: some-frontend:v1
+    pull_policy: never 
+    container_name: some-fontend
+    build:
+      context: ./fontend
+      dockerfile: Dockerfile
+    networks:
+      - frontend-lan
+      - shared-lan
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+
+
+  db:
+    image: postgres:15-alpine
+    container_name: proj-posgr
+    env_file:
+      - ./.docker.env
+    volumes:
+      - test-posgr:/var/lib/postgresql/data
+    networks:
+      - backend-lan
+    ports:
+      - 5432:5432
+
+networks:
+  backend-lan:
+  frontend-lan:
+  shared-lan:
+
+volumes:
+  test-posgr:
