@@ -1,37 +1,44 @@
-# Basic commands in git
+# Basic options in git
 
-## Move between branches
+## 1. Move between branches
 
-### Create a new branch
+#### Create a new branch
 `git switch -c <new_branch>`
 
-### List branches
-`git branch`
+#### List branches
+```bash
+git branch
+``` 
 
-### Delete branch
+#### Delete branch
 `git branch -d (or -D for force) <branch_name>`
 
 
-## Make commits
-### Add all files or a specific file for a commit
+## 2. Make commits
+#### Add all files or a specific file for a commit
 `git add .` or `git add <some_path>/<some_file>`
-### Make a commit with a comment
-`git commit -m "Text for a comment"`
+#### Make a commit with a comment
+```bash
+git commit -m "Text for a comment"
+``` 
 
-## Push branches
-### Push a non-existed brach in a repository
+## 3. Push branches
+#### Push a non-existed branch in a repository
 `git push -u origin <branch_name>`
-### Push changes in a existed branch
+#### Push changes in an existing branch
 `git push origin <branch_name>` or `git push`
 
-## Discard changes
-### Delete changes in one file
+## 4. Discard changes
+#### Delete changes in one file
 `git checkout (HEAD for staged changes) <file>`
 
-### Delete all changes
-`git reset --hard`
+#### Delete all changes
+```bash
+git reset --hard
+``` 
 
-### Stash all changes
-`git stash`
-
+#### Stash all changes
+```bash
+git stash
+``` 
 

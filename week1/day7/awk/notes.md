@@ -8,4 +8,4 @@
 #### Change field separator
 `awk -F'<new-character>' '{...}' filename`
 #### Show only specific lines filtered by a regex expression
-`awk '/<expression>/ {...}' filename'
+`awk '/<expression>/ {...}' filename'`

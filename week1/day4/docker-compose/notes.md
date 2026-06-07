@@ -1,10 +1,11 @@
-# Practical skills by 4th
+# Practical skills for day 4
 ## docker compose
-services: # Declare a top level element to give instrucitons to new containers
+```yaml
+services: # Declare a top level element to give instructions to new containers
     container1: # Give container a name (can be pinged by container1 name  in the same network). in docker ps it would be "<container-compose-dir>-<container1>-<num>"
         image: <image-name>:<image-tag>
         volumes: 
-            - some_volume:/path/in/docker/container #Save all data from the container dir in a docker volume even when the container stops
+            - some_volume:/path/in/docker/container # Save all data from the container dir in a docker volume even when the container stops
         env-file:
             - path/to/host/env # Add env data to container
         restart: always # Restart the container until its removal
@@ -21,7 +22,7 @@ services: # Declare a top level element to give instrucitons to new containers
         build: # make a container from specific Dockerfle
             context: /path/to/context/for/Dockerfile
             dockerfile: <Dockerfile-name>
-            target: <target-name> # When the Dockerfile has multistages
+            target: <target-name> # When the Dockerfile has multi-stages
         volumes:
             - ./path/from/host:/path/in/docker/container # The same saving data but it writes in the host dir (mount bind)
         networks:
@@ -30,14 +31,12 @@ services: # Declare a top level element to give instrucitons to new containers
 
 networks:
     - inner-network: # Declare inner network (at least with default params)
-        name: <network-name> # Add the network a specic name
+        name: <network-name> # Add the network a specific name
     - outside-network:
-        external: true # Specify that this network exixts outside the compose (can ping containers from other compose files)
+        external: true # Specify that this network exists outside the compose (can ping containers from other compose files)
 
 volumes:
     - volume: # Declare docker volume with default params
-
-
 ```
 
 

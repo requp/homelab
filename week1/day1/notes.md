@@ -1,5 +1,5 @@
-# Today's results
-## Learned basic options for commands:
+# Results for day one
+### 1. Learned basic options for commands:
 - [x] git
 - [x] find
 - [x] journalctl
@@ -9,5 +9,5 @@
 - [x] du
 - [x] df
 - [x] free
-## Learned how to edit by md format (also basic level)
+### 2. Learned how to edit in md format (also basic level)
 

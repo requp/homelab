@@ -1,8 +1,8 @@
-# Today's results
-### Learned basic options for commands:
+# Results for day 2
+### 1. Learned basic options for commands:
 - [x] ps
 - [x] systemctl
 
-### Learned how some systemd units work such as .service, .target
+### 2. Learned how some systemd units work such as .service, .target
 
-### Made my own service (show-kzn-weather.service)
+### 3. Made my own service (show-kzn-weather.service)

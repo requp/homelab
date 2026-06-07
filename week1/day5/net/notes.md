@@ -1,24 +1,34 @@
-## Prarctical skils of net programs
-### ss
+# Practical skills of net programs
+## 1. ss
 #### Most common ss command with options
-`ss -tulpn` <br>
+```bash
+ss -tulpn
+```
 - -t - TCP sockets
 - -u - UDP sockets
-- -l - Sockets which are listenning rn
-- -p - Show procceseses
+- -l - Sockets which are listening rn
+- -p - Show processes
 - -n - Show numeric info (for example 22 instead of ssh)
 #### Show all sockets
-`ss -a`
+```bash
+ss -a
+```
 #### Show additional columns with user info
-`ss -e`
+```bash
+ss -e
+```
 #### Show internal info
-`ss -i`
+```bash
+ss -i
+```
 #### Show only ip4 or ip6 sockets
 `ss -4` or `ss -6`
-#### Show summary statisctic
-`ss -s`
+#### Show summary statistic
+```bash
+ss -s
+```
 
-### curl
+## 2. curl
 #### Download a file and name it
 `curl -o new_name.zip ftp://some/path/file.zip`
 #### Download a file with the original name
@@ -26,14 +36,14 @@
 #### Show headers in response
 `curl -i http://some/site`
 #### Show raw data 
-For examle a raw html page <br>
+For example a raw html page <br/>
 `curl http://some/site/index.html`
 #### Fetch several sites or pages
-Works with regex syntax <br>
-`curl http://some/{site1, site2, site3/` or `curl http://some/site/page[1-8]` etc
+Works with regex syntax <br/>
+`curl http://some/{site1,site2,site3}/` or `curl http://some/site/page[1-8]` etc
 #### Send data in a html form with POST method
 `curl -d 'key1=value1&key2=value2' http://some/site`
-#### Specify methods for http request (usefull for working/testing REST API)
-`curl -X <METHOD-NAME> http://some/path
+#### Specify methods for http request (useful for working/testing REST API)
+`curl -X <METHOD-NAME> http://some/path`
 #### Upload files
 `curl -T file-name ftp://some/path`

@@ -1,7 +1,7 @@
 ## sed
 #### Show a whole file where with only first changed entry of each lines
 `sed 's/<regex-target>/<change>/' filename` 
-#### Show a whole file with every changed entry of each lines
+#### Show a whole file with only the first changed entry of each line
 `sed 's/<regex-target>/<change>/g' filename`
 #### Save data with changed entries in a new file
 `sed 's/.../.../' <source-file >new-file`
