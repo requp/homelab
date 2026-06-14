@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: remove apache2
+      apt:
+        name: apache2
+        state: absent
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+
+    - name: remove apache2 (httpd)
+      dnf:
+        name: httpd
+        state: absent
+      when: ansible_distribution in ["CentOS", "AlmaLinux"]
+
