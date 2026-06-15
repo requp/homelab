@@ -1,0 +1,53 @@
+---
+- name: install docker
+  hosts: docker_servers
+  become: yes
+  
+  tasks:
+    # - name: Assert the target machine is Debian from 11 to 13 versions
+    #   ansible.builtin.assert:
+    #     that:
+    #       - ansible_distribution == "Debian"
+    #       - ansible_distribution_major_version in ["11", "12", "13"]
+    #     fail_msg: "This playbook only supports Debian 11, 12, and 13."
+    - block:
+      - name: Update and install packages
+        apt:
+          name:
+            - ca-certificates
+            - curl
+            - gnupg
+          state: latest
+          update_cache: yes
+        when: ansible_distribution == "Debian" and ansible_distribution_major_version in ["11", "12", "13"]
+        register: update_and_install_packages
+
+      - name: Add Docker repository
+        deb822_repository:
+          name: docker
+          types: deb
+          uris: "https://download.docker.com/linux/debian/"
+          suites: "{{ ansible_lsb.codename }}"
+          components: stable
+          architectures: amd64
+          signed_by: https://download.docker.com/linux/debian/gpg
+
+      - name: Install docker
+        apt: 
+          name: 
+            - docker-ce
+            - docker-ce-cli
+            - containerd.io
+            - docker-buildx-plugin
+            - docker-compose-plugin
+          state: present
+          update_cache: yes
+
+      - name: Start and enable docker
+        systemd:
+          name: docker
+          state: started
+          enabled: yes
+
+      when: ansible_distribution == "Debian" 
+            and ansible_distribution_major_version in ["11", "12", "13"]

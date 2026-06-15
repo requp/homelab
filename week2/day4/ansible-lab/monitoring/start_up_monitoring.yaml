@@ -1,0 +1,28 @@
+---
+- name: start up monitoring
+  hosts: localhost
+  connection: local
+  become: yes
+  vars:
+    monitoring_path: "/opt/monitoring"
+
+  tasks:
+    - name: create monitoring dir
+      file:
+        path: "{{ monitoring_path }}"
+        state: directory
+    
+    - name: copy docker compose file
+      copy:
+        src: docker-compose.yaml
+        dest: "{{ monitoring_path }}"
+
+    - name: copy .env file
+      copy:
+        src: .env
+        dest: "{{ monitoring_path }}"
+
+    - name: start docker compose
+      community.docker.docker_compose_v2:
+        project_src: "{{ monitoring_path }}"
+        state: present

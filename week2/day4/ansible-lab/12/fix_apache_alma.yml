@@ -1,0 +1,21 @@
+---
+- name: make sure apache2 works
+  hosts: web_servers
+  become: true
+  tasks:
+    - name: update packages and install apache
+      tags: apache,httpd,alma
+      dnf:
+        name:
+          - httpd
+        state: latest
+        update_cache: yes
+      when: ansible_distribution in ["AlmaLinux", "CentOS"]
+
+    - name: start apache service
+      tags: apache,httpd,alma
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      when: ansible_distribution in ["AlmaLinux", "CentOS"]
