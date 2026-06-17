@@ -1,13 +1,13 @@
-# Parctical skills for day 2
+# Practical skills for day 2
 ## 1. pg_dump
-#### Typical command to dump a db
+### Typical command to dump a db
 `pg_dump -U <db-user> -h <hostname> -p <port> -Fc -d <db> -f posible/path/<dump-name>`
-- -Fc - for custom dump (can be alto -Ft for tar archive and -Fd for dir)
-- insted of `-d <db>` could be table with `-t <table>`
+- -Fc - for custom dump (can be also -Ft for tar archive and -Fd for dir)
+- instead of `-d <db>` could be table with `-t <table>`
 
 ## 2. pg_restore
-#### Typical command to restore a db
-`pg_restore -U <db-user> -h <hostname> -p <port> -F c <posible/path/<dump-name> -d <db>`
+### Typical command to restore a db
+`pg_restore -U <db-user> -h <hostname> -p <port> -F c <possible/path/<dump-name> -d <db>`
 - a db with the given name has to exist already
 
 ## 3. DATABASE
@@ -28,7 +28,7 @@ CREATE DATABASE some-db;
 #### Create a db declaring owner
 ```sql
 CREATE DATABASE some-db
-WITH OWNER TO user;
+WITH OWNER user;
 ```
 
 ### Drop
@@ -43,7 +43,7 @@ DROP DATABASE some-db WITH (FORCE);
 ```
 
 ## Role
-Roles are like users in other db systems. They have same rights
+Roles are like users in other DB systems. They have the same rights
 
 ### Common use
 #### Show all roles
@@ -73,7 +73,7 @@ SUPERUSER;
 ### Alter
 Everything here could be also added while creating roles. Or added later using `ALTER` statement.
 
-#### Add expcerision date to a role 
+#### Add an expiration date to a role 
 ```sql
 ALTER ROLE manager
 WITH VALID UNTIL '2026-08-01';
@@ -85,7 +85,7 @@ ALTER ROLE worker
 WITH CONNECTION LIMIT 10;
 ```
 
-### Drop role
+### Drop a role
 
 ```sql
 DROP ROLE manager;

@@ -1,3 +1,3 @@
 # Results for day 5
-### 1. Roles in ansible
-### 2. Tried to run ansible playbooks to ubuntu but it keept failing for some reason
+### 1. Roles in Ansible
+### 2. Tried to run Ansible playbooks on an Ubuntu target but it kept failing for some reason

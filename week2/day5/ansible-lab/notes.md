@@ -1,5 +1,5 @@
 # Practical skills for day 5
-### Roles hiearchy
+### Roles hierarchy
 
 ```
 📁 some_dir/

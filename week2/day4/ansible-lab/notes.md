@@ -1,13 +1,13 @@
 # Practical skills for day 4
 
 ### Register
-Helps to make tasks below dependent of the current if they use `when` with the register name
+It helps to make tasks below dependent on the current one if they use `when` with the register name
 
 ### Systemd module
-Reload, restart, start, stop, enable and disable services
+Reload, restart, start, stop, enable, and disable services
 
 ### Docker compose
-start and stop docker compose with state present and absent
+Start and stop Docker compose with state present and absent
 
 ### Creating users
 ```yaml
