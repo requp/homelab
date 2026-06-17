@@ -4,9 +4,15 @@
   tasks:
     - block:
       - name: update packages
-        package:
+        dnf:
           update_cache: yes
-      
+        when: ansible_distribution in ["Fedora", "CentOS", "AlmaLinix"]
+
+      - name: update packages (Ubuntu)
+        apt:
+          update_cache: yes
+        when: ansible_distribution in ["Ubuntu", "Debian"]
+
       - name: create user
         user:
           name: testik
@@ -27,4 +33,4 @@
           user: testik
           key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK59h4XXJ9BN3dSP/PqRMWelm+5xibSO7zmI1U4rXmtk ansible"
       
-      when: ansible_distribution in ["Ubuntu", "Debian", "CentOS", "AlmaLinux"]
+      when: ansible_distribution in ["Fedora", "Ubuntu", "Debian", "CentOS", "AlmaLinux"]
