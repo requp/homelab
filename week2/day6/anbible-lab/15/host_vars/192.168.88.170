@@ -1,0 +1,2 @@
+apache_package: httpd
+docker_linux_distro: centos
