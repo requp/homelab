@@ -1,0 +1,10 @@
+---
+- name: poweroff servers
+  hosts: servers
+  become: yes
+  tasks:
+    - name: poweroff
+      ansible.builtin.shell: /usr/sbin/poweroff
+      async: 1
+      poll: 0
+      ignore_errors: true

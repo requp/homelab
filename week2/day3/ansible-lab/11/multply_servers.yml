@@ -1,0 +1,88 @@
+---
+- name: update and upgrade packages
+  hosts: all
+  become: true
+  pre_tasks:
+    - name: upgrade Debian (Ubuntu)
+      tags: always
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_distribution in  ["Ubuntu", "Debian"]
+
+    - name: upgrade Alma (CentOS)
+      tags: always
+      dnf:
+        update_only: yes
+        update_cache: yes
+      when: ansible_distribution in  ["AlmaLinux", "CentOS"]
+
+- name: install apache on web_servers
+  hosts: web_servers
+  become: true
+  tasks:
+    - name: install apache2
+      tags: apache,apache2,debian
+      apt:
+        name:
+          - apache2
+        state: latest
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+
+    - name: install httpd
+      tags: apache,httpd,almalinux
+      dnf:
+        name:
+          - httpd
+        state: latest
+      when: ansible_distribution in ["AlmaLinux", "CentOS"]
+    
+    - name: copy linux course
+      tags: apache,apache2,httpd
+      copy:
+        src: ~/html.tar.gz
+        dest: /tmp/
+           
+    - name: untar linux course
+      tags: apache,apache2,httpd
+      unarchive:
+        src: /tmp/html.tar.gz
+        dest: /var/www/
+        remote_src: yes
+        owner: root
+        group: root
+        mode: 0644
+      
+      
+- name: install mariadb on db_servers
+  hosts: db_servers
+  become: true
+  tasks:
+    - name: install mariadb (Debian)
+      tags: db,mariadb,debian
+      apt:
+        name:
+          - mariadb-server
+        state: latest
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+
+    - name: install mariadb (AlmaLinux)
+      tags: db,mariadb,almalinux
+      dnf:
+        name:
+          - mariadb
+        state: latest
+      when: ansible_distribution in ["AlmaLinux", "CentOS"]
+
+- name: install samba on file servers      
+  hosts: file_servers
+  become: true
+  tasks:
+    - name: install samba (Debian\AlmaLinux)
+      tags: file_server,samba
+      package:
+        name:
+          - samba
+        state: latest
+      when: ansible_distribution in ["AlmaLinux", "CenOS" ,"Ubuntu", "Debian"]
+

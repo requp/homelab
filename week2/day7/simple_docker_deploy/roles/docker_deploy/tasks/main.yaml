@@ -1,0 +1,12 @@
+- block:
+  - name: clone project repository
+    ansible.builtin.git:
+      repo: 'https://github.com/{{ github_username }}/{{ simple_project_name  }}.git'
+      dest: '/opt/{{ simple_project_name }}/'
+      clone: yes
+
+  - name: start up docker compose
+    community.docker.docker_compose_v2:
+      project_src: /opt/{{ simple_project_name  }}
+      state: present
+

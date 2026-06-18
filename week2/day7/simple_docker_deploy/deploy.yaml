@@ -1,0 +1,26 @@
+---
+- hosts: all
+  tags: always
+  become: yes
+  tasks:
+    - name: Update packages
+      package:
+        update_cache: yes
+
+
+- hosts: docker_servers
+  tags: docker,install_docker
+  become: yes
+  roles:
+    - install_docker
+
+
+- name: Run simple deploy
+  hosts: docker_servers
+  tags: docker,simple_deploy
+  become: yes
+  vars:
+    github_username: requp
+    simple_project_name: example-voting-app-clone
+  roles:
+    - docker_deploy

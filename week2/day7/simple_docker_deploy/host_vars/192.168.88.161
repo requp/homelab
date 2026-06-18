@@ -1,0 +1,4 @@
+docker_linux_distro: debian
+apache_package: apache2
+ssh_users: "frank testik"
+ssh_template_file: sshd_config_debian.j2

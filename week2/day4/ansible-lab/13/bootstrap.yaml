@@ -1,0 +1,36 @@
+- name: bootstrap ansible user
+  hosts: servers
+  become: yes
+  tasks:
+    - block:
+      - name: update packages
+        dnf:
+          update_cache: yes
+        when: ansible_distribution in ["Fedora", "CentOS", "AlmaLinix"]
+
+      - name: update packages (Ubuntu)
+        apt:
+          update_cache: yes
+        when: ansible_distribution in ["Ubuntu", "Debian"]
+
+      - name: create user
+        user:
+          name: testik
+          group: root
+
+      - name: copy sudoers file
+        tags: always
+        copy: 
+          src: testik
+          dest: /etc/sudoers.d/
+          owner: root
+          group: root
+          mode: 0440
+
+      - name: add public key
+        tags: always
+        authorized_key:
+          user: testik
+          key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK59h4XXJ9BN3dSP/PqRMWelm+5xibSO7zmI1U4rXmtk ansible"
+      
+      when: ansible_distribution in ["Fedora", "Ubuntu", "Debian", "CentOS", "AlmaLinux"]

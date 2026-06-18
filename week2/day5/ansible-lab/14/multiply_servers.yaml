@@ -1,0 +1,20 @@
+---
+- name: udpate packages
+  hosts: all
+  become: true
+  pre_tasks:
+  - name: update packages (Debian)
+    tags: always
+    apt:
+      update_cache: yes
+    when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- hosts: web_servers
+  become: yes
+  roles: 
+    - web_servers
+
+- hosts: docker_servers
+  become: yes
+  roles: 
+    - docker_servers

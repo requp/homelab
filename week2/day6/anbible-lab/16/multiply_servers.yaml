@@ -1,0 +1,28 @@
+---
+- name: udpate packages
+  hosts: all
+  become: true
+  pre_tasks:
+  - name: update packages
+    tags: always
+    package:
+      update_cache: yes
+    when: ansible_distribution in ["Debian", "Ubuntu", "AlmaLinux", "CentOS", "Fedora"]
+
+- hosts: all
+  tags: always
+  become: true
+  roles: 
+  - base
+
+- hosts: web_servers
+  tags: web
+  become: yes
+  roles: 
+    - web_servers
+
+- hosts: docker_servers
+  tags: docker
+  become: yes
+  roles: 
+    - docker_servers

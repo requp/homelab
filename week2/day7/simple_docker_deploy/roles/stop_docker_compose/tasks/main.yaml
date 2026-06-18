@@ -1,0 +1,6 @@
+- block:
+  - name: stop docker compose
+    community.docker.docker_compose_v2:
+      project_src: /opt/{{ simple_project_name  }}
+      state: absent
+

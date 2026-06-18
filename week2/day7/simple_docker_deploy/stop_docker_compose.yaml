@@ -1,0 +1,10 @@
+---
+- name: Stop docker compose
+  hosts: docker_servers
+  gather_facts: no
+  tags: simple_destroy
+  become: yes
+  vars:
+    simple_project_name: example-voting-app-clone
+  roles:
+    - stop_docker_compose
