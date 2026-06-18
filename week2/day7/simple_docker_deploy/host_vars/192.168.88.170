@@ -1,0 +1,4 @@
+apache_package: httpd
+docker_linux_distro: centos
+ssh_users: "frank testik"
+ssh_template_file: sshd_config_almalinux.j2
